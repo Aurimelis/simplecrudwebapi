@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Users</h2>
+        <br />
+        <div ng-controller="APIController">
+            <table id="users-table">
+                <tr>
+                    <th>ID</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Postal code</th>
+                    <th></th>
+                </tr>
+                <tbody data-ng-repeat="user in users">
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td>
+                            <div ng-hide="editingData[user.id]">{{user.firstName}}</div>
+                            <div ng-show="editingData[user.id]"><input type="text" ng-model="user.firstName" /></div>
+                        </td>
+                        <td>
+                            <div ng-hide="editingData[user.id]">{{user.lastName}}</div>
+                            <div ng-show="editingData[user.id]"><input type="text" ng-model="user.lastName" /></div>
+                        </td>
+                        <td>
+                            <div ng-hide="editingData[user.id]">{{user.address}}</div>
+                            <div ng-show="editingData[user.id]"><input type="text" ng-model="user.address" /></div>
+                        </td>
+                        <td>
+                            <div ng-hide="editingData[user.id]">{{user.city}}</div>
+                            <div ng-show="editingData[user.id]"><input type="text" ng-model="user.city" /></div>
+                        </td>
+                        <td>
+                            <div ng-hide="editingData[user.id]">{{user.postalCode}}</div>
+                            <div ng-show="editingData[user.id]"><input type="text" ng-model="user.postalCode" /></div>
+                        </td>
+                        <td>
+                            <button ng-hide="editingData[user.id]" ng-click="modify(user)">Modify</button>
+                            <button ng-show="editingData[user.id]" ng-click="update(user)">Update</button>
+                            <button ng-show="editingData[user.id]" ng-click="cancelModify(user)">Cancel</button>
+                            <input type="button" id="Delete" value="Delete" data-ng-click="dltUser(user.id)"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+
+            <div class="form-group">
+                <h3>Add new user</h3>
+                <input type="text" class="form-control" id="firstName" placeholder="Firstname" [required="string"] required data-ng-model="firstName" />
+                <br />
+                <input type="text" class="form-control" id="lastName" placeholder="LastName" [required="string"] data-ng-model="lastName" />
+                <br />
+                <input type="text" class="form-control" id="address" placeholder="Address" [required="string"] data-ng-model="address" />
+                <br />
+                <input type="text" class="form-control" id="city" placeholder="City" [required="string"] data-ng-model="city" />
+                <br />
+                <input type="text" class="form-control" id="postalCode" placeholder="PostalCode" [required="string"] data-ng-model="postalCode" />
+                <br />
+            </div>
+            <button type="button" class="btn btn-default" data-ng-click="saveUser();">Submit</button>
+        </div>
+    </div>
+</div>

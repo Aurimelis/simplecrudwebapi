@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Random Users";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <h2>Generate random users</h2>
+
+        <label for="counter">Count:</label>
+        <input name="counter" type="number" id="counter" />
+        <button id="generate-btn">Generate</button>
+
+        <div id="users-table"></div>
+
+        <button id="filter-duplicates">Remove duplicates</button>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div id="grouped-users-graph">
+            <h2>Users population</h2>
+
+            <svg width="800" height="480" id="graph"></svg>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="~/js/d3tip.js"></script>
+    <script src="~/js/randomUsers.js"></script>
+    <script src="~/js/page_scripts/randomUsersPage.js"></script>
+}
